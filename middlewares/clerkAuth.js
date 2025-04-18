@@ -1,9 +1,9 @@
-import { ClerkExpressWithAuth } from "@clerk/clerk-sdk-node";
+import { ClerkExpressRequireAuth  } from "@clerk/clerk-sdk-node";
 
 
-const clerkAuth = ClerkExpressWithAuth(
+const clerkAuth = ClerkExpressRequireAuth (
     {
-        secretkey:process.env.CLERK_SECRET_KEY,
+        unauthorized: (req, res) => res.status(401).json({ error: "Unauthorized" }),
     }
 );
 
